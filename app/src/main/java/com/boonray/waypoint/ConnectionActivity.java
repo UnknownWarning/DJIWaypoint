@@ -32,7 +32,7 @@ import dji.sdk.base.BaseProduct;
 import dji.sdk.products.Aircraft;
 import dji.sdk.sdkmanager.DJISDKManager;
 
-public class ConnectionActivity extends AppCompatActivity implements View.OnClickListener {
+public class ConnectionActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = ConnectionActivity.class.getName();
 
@@ -71,7 +71,7 @@ public class ConnectionActivity extends AppCompatActivity implements View.OnClic
 
         // Register the broadcast receiver for receiving the device connection's changes.
         IntentFilter filter = new IntentFilter();
-        filter.addAction(DemoApplication.FLAG_CONNECTION_CHANGE);
+        filter.addAction(DJIDemoApplication.FLAG_CONNECTION_CHANGE);
         registerReceiver(mReceiver, filter);
     }
 
@@ -127,7 +127,7 @@ public class ConnectionActivity extends AppCompatActivity implements View.OnClic
     };
 
     private void refreshSDKRelativeUI() {
-        BaseProduct mProduct = DemoApplication.getProductInstance();
+        BaseProduct mProduct = DJIDemoApplication.getProductInstance();
 
         if (null != mProduct && mProduct.isConnected()) {
             Log.v(TAG, "refreshSDK: True");

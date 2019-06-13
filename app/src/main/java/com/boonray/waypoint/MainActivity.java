@@ -79,6 +79,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private WaypointMissionHeadingMode mHeadingMode = WaypointMissionHeadingMode.AUTO;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_main);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(DJIDemoApplication.FLAG_CONNECTION_CHANGE);
+        registerReceiver(mReceiver, filter);
+
+        mapView = (MapView) findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);
+
+        initMapView();
+        initUI();
+        addListener();
+
+    }
+
+    @Override
     protected void onResume(){
         super.onResume();
         initFlightController();
@@ -143,25 +162,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LatLng shenzhen = new LatLng(22.5362, 113.9454);
         aMap.addMarker(new MarkerOptions().position(shenzhen).title("Marker in Shenzhen"));
         aMap.moveCamera(CameraUpdateFactory.newLatLng(shenzhen));
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_main);
-
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(DJIDemoApplication.FLAG_CONNECTION_CHANGE);
-        registerReceiver(mReceiver, filter);
-
-        mapView = (MapView) findViewById(R.id.map);
-        mapView.onCreate(savedInstanceState);
-
-        initMapView();
-        initUI();
-        addListener();
-
     }
 
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {

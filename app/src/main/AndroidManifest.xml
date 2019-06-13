@@ -46,6 +46,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <!-- Didn't find class "org.apache.http.params.BasicHttpParams" -->
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+
         <!-- 启用高德地图服务 -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
