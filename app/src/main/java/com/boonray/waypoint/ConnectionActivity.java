@@ -64,6 +64,8 @@ public class ConnectionActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        new BRCrashHandler().init(getApplicationContext());
+
         checkAndRequestPermissions();
         setContentView(R.layout.activity_connection);
 
